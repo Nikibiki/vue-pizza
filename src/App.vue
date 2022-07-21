@@ -1,17 +1,36 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="wrapper">
+    <HeaderComponent/>
+    <div class="content">
+      <div class="container">
+        <div class="content__top">
+          <CategoriesComponent />
+          <SortComponent />
+        </div>
+        <h2 class="content__title">Все пиццы</h2>
+        <div class="content__items">
+          <PizzaBlock title="Простая пицца" :price="399"/>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HeaderComponent from "@/components/Header";
+import CategoriesComponent from "@/components/Categories"
+import SortComponent from "@/components/Sort"
+import PizzaBlock from "@/components/PizzaBlock"
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    HeaderComponent,
+    CategoriesComponent,
+    SortComponent,
+    PizzaBlock
+  },
+};
 </script>
 
 <style>
