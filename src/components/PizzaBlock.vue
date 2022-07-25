@@ -19,7 +19,7 @@
     </div>
     <div class="pizza-block__bottom">
       <div class="pizza-block__price">от {{ price }} ₽</div>
-      <div class="button button--outline button--add">
+      <button @click="count += 1" class="button button--outline button--add">
         <svg
             width="12"
             height="12"
@@ -33,8 +33,8 @@
           />
         </svg>
         <span>Добавить</span>
-        <i>2</i>
-      </div>
+        <i v-if="count">{{ count }}</i>
+      </button>
     </div>
   </div>
 </template>
@@ -49,7 +49,12 @@ export default {
     price: {
       type: Number
     }
-  }
+  },
+  data() {
+    return {
+      count: 0,
+    }
+  },
 }
 </script>
 
