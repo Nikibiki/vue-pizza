@@ -14,13 +14,11 @@
         />
       </svg>
       <b>Сортировка по:</b>
-      <span>популярности</span>
+      <span @click="isVisible = !isVisible">{{selectedFilter}}</span>
     </div>
-    <div class="sort__popup">
+    <div class="sort__popup" v-if="isVisible">
       <ul>
-        <li class="active">популярности</li>
-        <li>цене</li>
-        <li>алфавиту</li>
+        <li v-for="sort in orderBy" :key="sort.id" :class="{active: active === sort.id}" @click="switchAndClose(sort.id)">{{ sort.name }}</li>
       </ul>
     </div>
   </div>
@@ -28,7 +26,39 @@
 
 <script>
 export default {
-  name: "SortComponent"
+  name: "SortComponent",
+  data(){
+    return {
+      isVisible: false,
+      active: 0,
+      orderBy: [
+        {
+          id: 0,
+          name: 'популярности'
+        },
+        {
+          id: 1,
+          name: 'цене'
+        },
+        {
+          id: 2,
+          name: 'алфавиту'
+        },
+      ],
+    };
+  },
+  computed: {
+    selectedFilter(){
+      const active = this.active;
+      return this.orderBy.filter(elem => elem.id === active).pop().name;
+    }
+  },
+  methods: {
+    switchAndClose(index) {
+      this.active = index;
+      this.isVisible = false;
+    }
+  },
 }
 </script>
 

@@ -2,23 +2,20 @@
   <div class="pizza-block">
     <img
         class="pizza-block__image"
-        src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
+        :src="pizza.imageUrl"
         alt="Pizza"
     />
-    <h4 class="pizza-block__title">{{title}}</h4>
+    <h4 class="pizza-block__title">{{pizza.title}}</h4>
     <div class="pizza-block__selector">
       <ul>
-        <li class="active">тонкое</li>
-        <li>традиционное</li>
+        <li v-for="type in pizza.types" :key="type" @click="activeType = type" :class="{active: activeType === type}">{{types[type]}}</li>
       </ul>
       <ul>
-        <li class="active">26 см.</li>
-        <li>30 см.</li>
-        <li>40 см.</li>
+        <li v-for="(size, index) in pizza.sizes" :key="index" :class="{active: activeSize === index}" @click="activeSize = index">{{size}} см.</li>
       </ul>
     </div>
     <div class="pizza-block__bottom">
-      <div class="pizza-block__price">от {{ price }} ₽</div>
+      <div class="pizza-block__price">от {{ pizza.price }} ₽</div>
       <button @click="count += 1" class="button button--outline button--add">
         <svg
             width="12"
@@ -48,11 +45,17 @@ export default {
     },
     price: {
       type: Number
+    },
+    pizza: {
+      type: Object
     }
   },
   data() {
     return {
       count: 0,
+      activeType: 0,
+      activeSize: 0,
+      types: ['тонкое', 'традиционное'],
     }
   },
 }

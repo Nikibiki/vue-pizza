@@ -9,7 +9,7 @@
         </div>
         <h2 class="content__title">Все пиццы</h2>
         <div class="content__items">
-          <PizzaBlock title="Простая пицца" :price="399"/>
+          <PizzaBlock v-for="pizza in pizzas" :key="pizza.id" :pizza="pizza"/>
         </div>
       </div>
     </div>
@@ -22,6 +22,8 @@ import CategoriesComponent from "@/components/Categories"
 import SortComponent from "@/components/Sort"
 import PizzaBlock from "@/components/PizzaBlock"
 
+// import pizzas from "@/pizzas.json"
+
 export default {
   name: "App",
   components: {
@@ -29,6 +31,18 @@ export default {
     CategoriesComponent,
     SortComponent,
     PizzaBlock
+  },
+  data(){
+    return {
+      pizzas: [],
+    };
+  },
+  mounted() {
+    fetch('https://62ea8bda3a5f1572e87e5651.mockapi.io/api/v1/items')
+      .then(res => res.json())
+      .then(pizzaArr => {
+        this.pizzas = pizzaArr;
+      })
   },
 };
 </script>

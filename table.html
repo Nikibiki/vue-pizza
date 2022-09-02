@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            border: 1px solid #acacac;
+            /*border-collapse: collapse;*/
+            border-spacing: 0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        tbody {
+            border: 1px solid black;
+        }
+        td{
+            /*border: 1px solid red;*/
+            padding: 0;
+            border-bottom: 1px solid #acacac;
+            /*background-clip: padding-box;*/
+        }
+        td:not(:last-child){
+            border-right: 1px solid black;
+        }
+        tr {
+            border-bottom: 1px solid #acacac;
+            border-right: 1px solid black;
+        }
+
+        tr:nth-child(odd) {
+            /*background-color: #acacac;*/
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
